@@ -18,6 +18,9 @@ outputVideoPath = 'output_video.avi'; % Replace with your desired output path
 outputVideo = VideoWriter(outputVideoPath, 'Uncompressed AVI');
 open(outputVideo);
 
+customData = cell(1, numFrames); %initialize cell array to store data
+frameIndex = 1; %initialize the frame index
+
 %frame by frame interactive YOLO 
 %once we have video I'll probably need to actually test and make sure does
 %what we want
@@ -50,7 +53,9 @@ while hasFrame(videoReader)
     
     customBboxes = [];
     customLabels = {};
-    
+
+
+    %BOX DRAWING
     while true
         %draw a bounding box
         h = drawrectangle;
@@ -74,11 +79,18 @@ while hasFrame(videoReader)
             break; %stop drawing if no class is selected
         end
     end
+
+    customData{frameIndex} = struct('Bboxes', customBboxes, 'Labels', customLabels);
+    frameIndex = frameIndex + 1;
     
     %write the frame with custom bounding boxes to the output video
     writeVideo(outputVideo, insertObjectAnnotation(frame, 'rectangle', customBboxes, customLabels));
 end
 
+%save box positions and labels in excel file
+customDataTable = cell2table(customData', 'VariableNames', {'Data'});
+excelFileName = 'custom_annotations.xlsx';
+writetable(customDataTable, excelFileName);
 
 %close the interactive figure
 close(hFig);
