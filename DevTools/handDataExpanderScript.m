@@ -4,7 +4,6 @@
 
 aStart = 1;
 aEnd = 500;
-
 bStart = 501;
 bEnd = 1000;
 
@@ -12,6 +11,10 @@ bEnd = 1000;
 %Otherwise, alter the cEnd value accordingly
 cStart = 1001;
 cEnd = 1043;
+
+%Update these values to decide which segment is being generated
+startFrame = aStart;
+endFrame = aEnd;
 
 %Make sure the time between your frames is 0.03336 like mine is
 %Otherwise, alter accordingly. (Round to 5th decimal place)
