@@ -1,6 +1,6 @@
-%Segment A: Frames 1 - 500
-%Segment B: Frames 501 - 1000
-%Segment C: Frames 1001 - last image
+%Segment A: Frames 1 - 400
+%Segment B: Frames 401 - 800
+%Segment C: Frames 801 - last image
 
 aStart = 1;
 aEnd = 400;
