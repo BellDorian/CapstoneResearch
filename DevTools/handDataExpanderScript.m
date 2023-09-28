@@ -3,13 +3,13 @@
 %Segment C: Frames 1001 - last image
 
 aStart = 1;
-aEnd = 500;
-bStart = 501;
-bEnd = 1000;
+aEnd = 400;
+bStart = 401;
+bEnd = 800;
 
 %Make sure your last frame of data is 1043 like mine is
 %Otherwise, alter the cEnd value accordingly
-cStart = 1001;
+cStart = 801;
 cEnd = 1043;
 
 %Update these values to decide which segment is being generated
