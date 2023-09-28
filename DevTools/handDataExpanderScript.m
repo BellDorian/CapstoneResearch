@@ -30,7 +30,7 @@ handDataCellArray = Hands4;
 for frame = startFrame:1:endFrame
     
     time = i * 0.03336;
-    disp("Frame #" + i);
+    disp("Frame #" + frame);
     fprintf("%.4E", time)
     i = i + 1;
 
