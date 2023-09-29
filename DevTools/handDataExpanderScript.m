@@ -13,8 +13,8 @@ cStart = 801;
 cEnd = 1050;
 
 %Update these values to decide which segment is being generated
-startFrame = cStart;
-endFrame = cEnd;
+startFrame = aStart;
+endFrame = aEnd;
 
 %Make sure the time between your frames is 0.03336 like mine is
 %Otherwise, alter accordingly. (Round to 5th decimal place)
