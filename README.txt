@@ -36,3 +36,5 @@ Notes from meeting (9/14/23, 7pm - 8pm):
   1. This one is an introduction of the version v8 => https://www.youtube.com/watch?v=wuZtUMEiKWY&t=21s
   
   2. This video provides a rundown on a list of top detection software => https://www.youtube.com/watch?v=dL9B9VUHkgQ
+  
+  3. Another video on Yolo => https://www.youtube.com/watch?v=gKTYMfwPo4M
