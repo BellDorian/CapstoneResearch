@@ -25,4 +25,6 @@ Notes from meeting (9/14/23, 7pm - 8pm):
 -Next Meeting 
   -Thursday Sept 21, 7pm
   -Have at least 1 set of frames done ground truthing
+  
+- I have been busy researching yolo. I created a place above where you can go in and click on the links. KK
         
