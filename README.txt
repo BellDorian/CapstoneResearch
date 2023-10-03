@@ -21,10 +21,16 @@ Notes from meeting (9/14/23, 7pm - 8pm):
         Eyes: Green -- [0.00 1.00 0.00] Green (g)
         Mouth: Blue -- [0/00 0.45 0.74] Blue (b)
         Hands: Purple -- [1.00 0.00 1.00] Magenta (m)
+        
+- Zoom Meeting Room Information
+  Join from computer or mobile:  
+  https://iu.zoom.us/j/82118075850
+
+  Meeting ID: 821 1807 5850
            
 -Next Meeting 
   -Thursday Sept 21, 7pm
   -Have at least 1 set of frames done ground truthing
         
-Yolo Video
+- Yolo Video
   1. This one is an introduction of the version v8 https://www.youtube.com/watch?v=wuZtUMEiKWY&t=21s
