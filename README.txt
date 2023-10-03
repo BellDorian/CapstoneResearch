@@ -26,3 +26,5 @@ Notes from meeting (9/14/23, 7pm - 8pm):
   -Thursday Sept 21, 7pm
   -Have at least 1 set of frames done ground truthing
         
+Yolo Video
+  1. This one is an introduction of the version v8 https://www.youtube.com/watch?v=wuZtUMEiKWY&t=21s
