@@ -1,0 +1,46 @@
+Code Below:
+
+% Read an image
+img = imread('image or video');
+
+% Define the target colors
+colors = {
+    'hands', [1.00, 0.00, 1.00];
+    'eyes', [0.00, 1.00, 0.00];
+    'face', [1.00, 0.00, 0.00];
+    'mouth', [0.00, 0.45, 0.74];
+};
+
+% Convert the image to double for processing
+imgDouble = im2double(img);
+
+% Loop over each color and detect
+figure, imshow(img), hold on
+for i = 1:size(colors, 1)
+    label = colors{i, 1};
+    targetColor = colors{i, 2};
+    
+    % Find the regions in the image that are close to the target color
+    diff = sqrt(sum((imgDouble - reshape(targetColor, [1 1 3])).^2, 3));
+    mask = diff < 0.05;  % This threshold might need to be adjusted
+    
+    % Find bounding boxes of detected regions
+    stats = regionprops('table', mask, 'BoundingBox');
+    for j = 1:height(stats)
+        bbox = stats.BoundingBox(j, :);
+        rectangle('Position', bbox, 'EdgeColor', targetColor, 'LineWidth', 2);
+        text(bbox(1), bbox(2), label, 'Color', 'white');
+    end
+end
+hold off
+
+
+Below is some information about training in MatLab that I found and what software packages we need to have installed.
+
+This script assumes that you have the Image Processing Toolbox installed.
+    
+This is a very naive approach, just looking for the given colors in an image. If your use case involves real-world complex images, you'd need a more sophisticated approach, like training a deep learning model with labeled data.
+    
+The 0.05 threshold in mask = diff < 0.05; might need adjustment based on how close you want the match to be.
+
+To train a proper detection system, you'd typically require labeled image data and a training pipeline, and you would likely use a tool like MATLAB's Deep Learning Toolbox.
