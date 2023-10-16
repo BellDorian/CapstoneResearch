@@ -1,5 +1,28 @@
-%{
+% Split the data for Face, Eyes, and Mouth
+disp('Gathering Face, Eyes, Mouth detection data');
+splitRatio = 0.8;
+faceNumImages = height(faceEyesMouthTrainingData);
+faceSplitIdx = randperm(faceNumImages, round(splitRatio * faceNumImages));
+
+faceTrainingDataSplit = faceEyesMouthTrainingData(faceSplitIdx, :);
+faceValidationDataSplit = faceEyesMouthTrainingData(setdiff(1:end, faceSplitIdx), :); % Corrected indexing
+
+% Detect faces using the trained detector
+faceDetectionResults = table();
+imageFiles = faceValidationDataSplit.imageFilename;
+numImages = numel(imageFiles);
+bboxes = cell(numImages, 1);
+scores = cell(numImages, 1);
+for i = 1:numImages
+    [bboxes{i}, scores{i}] = detect(faceEyesMouthDetector, imread(imageFiles{i}));
+end
+faceDetectionResults.imageFilename = imageFiles;
+faceDetectionResults.Face = bboxes;
+faceDetectionResults.FaceScore = scores;
+
 numImages = numel(faceDetectionResults.imageFilename);
+
+disp('data gathering complete!');
 
 % Convert bounding boxes and scores to strings for Excel export
 bboxStr = cell(numImages, 1);
@@ -15,10 +38,14 @@ T = table(faceDetectionResults.imageFilename, bboxStr, scoreStr, ...
     'VariableNames', {'Filename', 'BoundingBox', 'ConfidenceScore'});
 
 writetable(T, 'faceDetectionResults.xlsx');
-%}
+
+disp('Excel file created and stored with faceDetector results.');
+
+
 
 % Similarly, detect hands and evaluate the handDetector using the same method
 % --- Hand Detection & Evaluation ---
+disp('Gathering Hand detection data');
 handNumImages = height(handTrainingData);
 handSplitIdx = randperm(handNumImages, round(splitRatio * handNumImages));
 handTrainingDataSplit = handTrainingData(handSplitIdx, :);
@@ -38,6 +65,8 @@ handDetectionResults.HandScore = scoresHand;
 
 numImages = numel(handDetectionResults.imageFilename);
 
+disp('data gathering complete!');
+
 % Convert bounding boxes and scores to strings for Excel export
 bboxStr = cell(numImages, 1);
 scoreStr = cell(numImages, 1);
@@ -53,5 +82,6 @@ T = table(handDetectionResults.imageFilename, bboxStr, scoreStr, ...
 
 writetable(T, 'handDetectionResults.xlsx');
 
+disp('Excel file created and stored with faceDetector results.');
 
 

@@ -22,10 +22,7 @@ handDetector = trainRCNNObjectDetector(handTrainingData, pretrainedCNN, options,
     'NegativeOverlapRange', [0 0.3], 'PositiveOverlapRange', [0.5 1]);
 
 % ========== Detection & Evaluation ==========
-<<<<<<< HEAD
 %{
-=======
->>>>>>> 420fb05cc02a7cffa3d32c89e9e1d8d87779aff4
 
 % Split the data for Face, Eyes, and Mouth
 splitRatio = 0.8;
@@ -78,14 +75,11 @@ handDetectionResults.HandScore = scoresHand;
 averagePrecisionHand = evaluateDetectionPrecision(handDetectionResults, handValidationDataSplit(:, {'imageFilename', 'Hand'}));
 disp('Evaluation Results for Hand Detector:');
 disp(averagePrecisionHand);
-<<<<<<< HEAD
 %}
-=======
->>>>>>> 420fb05cc02a7cffa3d32c89e9e1d8d87779aff4
 
 % ========== Save the Trained Detectors ==========
 
-save('trainedFaceDetectorS105.mat', 'faceEyesMouthDetector');
-save('trainedHandDetectorS105.mat', 'handDetector');
+save('trainedFaceDetectorS205.mat', 'faceEyesMouthDetector');
+save('trainedHandDetectorS205.mat', 'handDetector');
 
 disp('Training and evaluation complete!');
