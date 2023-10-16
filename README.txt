@@ -31,8 +31,9 @@ Notes from meeting (9/14/23, 7pm - 8pm):
 - I decided to train the detectors using Faster R CNN rather than yolo.
 
 		I made a script that extracted each frame from the video that is used for ground truthing. Then we stored the video path
-	 with the corresponding bounding box for each frame within a table. That table was then used to train R CNN
-	using the trainRCNNObjectDetector. The data is save and exported to excel file using another script. TK 
+	 with the corresponding bounding box for each frame within a table. The data was stored so that the Face detector was
+	 only trained using Face, Eyes, and Mouth and that there was a separate detector for Hands. That table was then used 
+	 to train R CNN using the trainRCNNObjectDetector. The data is save and exported to excel file using another script. TK 
 
 	10/15/2023:
 			the script ran well with 2 epochs but that was the only way we had enough time to train the data by the due date. 
