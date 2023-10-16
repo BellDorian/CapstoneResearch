@@ -26,4 +26,4 @@ savePath = fullfile(saveDir, 'trainedTopSideHandDetectorT105.mat');
 save(savePath, 'handDetector');
 
 
-disp('Training and evaluation complete!');
+disp('Training complete!');
