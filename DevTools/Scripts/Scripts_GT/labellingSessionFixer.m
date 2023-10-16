@@ -1,21 +1,24 @@
-% Load the MAT file
-data = load('Side1_04.mat');
-gTruth = data.groundTruthLabelingSession; % Extracting the correct object from MAT file
+% Load the gTruth object
+load('side1_03_new.mat', 'gTruth');
 
-% Define the current and alternative paths in a cell array
-currentPath = '/Users/kellykuhn/Library/Mobile Documents/com~apple~CloudDocs/IUPUI Fall 2023/Explorations Applied Computing/Side1_4/side1_4.mp4';
-alternativePath = 'D:\myCode\CAPSTONE\GroundTruth\GT_Side1\MAT';
+% Extract label data from the gTruth object
+labelData = gTruth.ROILabelData;
+labelDefs = gTruth.LabelDefinitions;
 
-% Create a cell array with the current and alternative paths
-pathPairs = {currentPath, alternativePath};
+% Define the current and alternative paths
+alternativePath = 'D:\myCode\CAPSTONE\Videos\side1\side1_3.mp4';
 
-% Try the changeFilePaths function with the cell array of path pairs
-try
-    unresolvedPaths = changeFilePaths(gTruth, pathPairs);
-catch ME
-    disp(['Error: ', ME.message]);
-    return;
-end
+% Create a new VideoSource with the updated path
+newDataSource = vision.labeler.loading.VideoSource('SourceName', alternativePath);
 
-% Save the updated gTruth object back to your MAT file
-save('Side1_04.mat', 'groundTruthLabelingSession', '-append');
+% Construct a new gTruth object with the new video source and extracted label data
+newGTruth = groundTruthMultisignal(newDataSource, labelDefs, labelData);
+
+% Save the updated gTruth object back to the MAT file
+save('side1_03_new.mat', 'newGTruth', '-append');
+
+disp('Updated gTruth object with new file path successfully.');
+
+
+
+

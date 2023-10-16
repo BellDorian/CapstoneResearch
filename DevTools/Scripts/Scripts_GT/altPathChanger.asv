@@ -1,0 +1,12 @@
+% Define the current and alternative paths in a cell array
+currentPath = 'C:\Users\MsDor\OneDrive\Documents\MATLAB\side1_3.mp4';
+alternativePath = 'D:\myCode\CAPSTONE\Videos\side1';
+
+% Create a cell array with the current and alternative paths
+pathPairs = {currentPath, alternativePath};
+
+% Use the changeFilePaths function with the cell array of path pairs
+unresolvedPaths = changeFilePaths(gTruth, pathPairs);
+
+% Save the updated gTruth object back to your MAT file
+save('Side1_03_newNew.mat', 'gTruth', '-append');
