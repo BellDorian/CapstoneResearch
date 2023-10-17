@@ -37,7 +37,7 @@ end
 T = table(faceDetectionResults.imageFilename, bboxStr, scoreStr, ...
     'VariableNames', {'Filename', 'BoundingBox', 'ConfidenceScore'});
 
-writetable(T, 'faceDetectionResults.xlsx');
+writetable(T, 'faceDetectionResults_S103.xlsx');
 
 disp('Excel file created and stored with faceDetector results.');
 
@@ -80,7 +80,7 @@ end
 T = table(handDetectionResults.imageFilename, bboxStr, scoreStr, ...
     'VariableNames', {'Filename', 'BoundingBox', 'ConfidenceScore'});
 
-writetable(T, 'handDetectionResults.xlsx');
+writetable(T, 'handDetectionResults_S103.xlsx');
 
 disp('Excel file created and stored with faceDetector results.');
 

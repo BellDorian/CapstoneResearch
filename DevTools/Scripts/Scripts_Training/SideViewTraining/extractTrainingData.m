@@ -1,7 +1,7 @@
 % ========== Frame Extraction ==========
 
-videoFile = 'D:\myCode\CAPSTONE\Videos\side2\side1_4.mp4';
-outputDir = 'D:\myCode\CAPSTONE\Videos\side2\frames\S104\';
+videoFile = 'D:\myCode\CAPSTONE\Videos\side1\side1_3.mp4';
+outputDir = 'D:\myCode\CAPSTONE\Videos\side1\frames\S103\';
 
 if ~exist(outputDir, 'dir')
     mkdir(outputDir);
@@ -14,7 +14,7 @@ while hasFrame(vidObj)
     frameNum = frameNum + 1;
     frame = readFrame(vidObj);
     
-    outputFileName = sprintf('%sS104frame_%04d.jpg', outputDir, frameNum);
+    outputFileName = sprintf('%sS103frame_%04d.jpg', outputDir, frameNum);
     imwrite(frame, outputFileName);
 end
 
@@ -22,17 +22,17 @@ disp('Frame extraction complete!');
 
 % ========== Creating Training Data Table ==========
 
-load('Side1_04copy(1).mat', 'gTruth');
+load('Side1_03.mat', 'gTruth');
 
-labelData = gTruth.ROILabelData.side2_5;
+labelData = gTruth.ROILabelData.side1_3;
 
 imageFileNames = cell(height(labelData), 1);
 
 for i = 1:height(labelData)
-    imageFileNames{i} = sprintf('%sS104frame_%04d.jpg', outputDir, i);
+    imageFileNames{i} = sprintf('%sS103frame_%04d.jpg', outputDir, i);
 end
 
-trainingData = table(imageFileNames, labelData.Head, labelData.Eyes, labelData.Mouth, labelData.Hands, ...
+trainingData = table(imageFileNames, labelData.Face, labelData.Eyes, labelData.Mouth, labelData.Hands, ...
     'VariableNames', {'imageFilename', 'Face', 'Eyes', 'Mouth', 'Hand'});
 
 for i = 1:height(trainingData)

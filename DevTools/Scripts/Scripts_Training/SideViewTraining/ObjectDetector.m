@@ -23,7 +23,7 @@ handDetector = trainRCNNObjectDetector(handTrainingData, pretrainedCNN, options,
 
 % ========== Save the Trained Detectors ==========
 
-save('trainedFaceDetectorS205.mat', 'faceEyesMouthDetector');
-save('trainedHandDetectorS205.mat', 'handDetector');
+save('trainedFaceDetector_S103.mat', 'faceEyesMouthDetector');
+save('trainedHandDetector_S103.mat', 'handDetector');
 
 disp('Training and evaluation complete!');
