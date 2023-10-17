@@ -1,87 +1,41 @@
-% Split the data for Face, Eyes, and Mouth
-disp('Gathering Face, Eyes, Mouth detection data');
 splitRatio = 0.8;
-faceNumImages = height(faceEyesMouthTrainingData);
-faceSplitIdx = randperm(faceNumImages, round(splitRatio * faceNumImages));
 
-faceTrainingDataSplit = faceEyesMouthTrainingData(faceSplitIdx, :);
-faceValidationDataSplit = faceEyesMouthTrainingData(setdiff(1:end, faceSplitIdx), :); % Corrected indexing
+% --- Face Detection & Evaluation ---
+disp('Gathering Face, Eyes, Mouth detection data');
+processDetection(faceEyesMouthTrainingData, faceEyesMouthDetector, 'faceDetectionResults_S203.xlsx', splitRatio);
 
-% Detect faces using the trained detector
-faceDetectionResults = table();
-imageFiles = faceValidationDataSplit.imageFilename;
-numImages = numel(imageFiles);
-bboxes = cell(numImages, 1);
-scores = cell(numImages, 1);
-for i = 1:numImages
-    [bboxes{i}, scores{i}] = detect(faceEyesMouthDetector, imread(imageFiles{i}));
-end
-faceDetectionResults.imageFilename = imageFiles;
-faceDetectionResults.Face = bboxes;
-faceDetectionResults.FaceScore = scores;
-
-numImages = numel(faceDetectionResults.imageFilename);
-
-disp('data gathering complete!');
-
-% Convert bounding boxes and scores to strings for Excel export
-bboxStr = cell(numImages, 1);
-scoreStr = cell(numImages, 1);
-
-for i = 1:numImages
-    bboxStr{i} = mat2str(faceDetectionResults.Face{i});
-    scoreStr{i} = mat2str(faceDetectionResults.FaceScore{i});
-end
-
-% Convert to table
-T = table(faceDetectionResults.imageFilename, bboxStr, scoreStr, ...
-    'VariableNames', {'Filename', 'BoundingBox', 'ConfidenceScore'});
-
-writetable(T, 'faceDetectionResults_S103.xlsx');
-
-disp('Excel file created and stored with faceDetector results.');
-
-
-
-% Similarly, detect hands and evaluate the handDetector using the same method
 % --- Hand Detection & Evaluation ---
 disp('Gathering Hand detection data');
-handNumImages = height(handTrainingData);
-handSplitIdx = randperm(handNumImages, round(splitRatio * handNumImages));
-handTrainingDataSplit = handTrainingData(handSplitIdx, :);
-handValidationDataSplit = handTrainingData(setdiff(1:end, handSplitIdx), :);
+processDetection(handTrainingData, handDetector, 'handDetectionResults_S203.xlsx', splitRatio);
 
-handDetectionResults = table();
-imageFilesHand = handValidationDataSplit.imageFilename;
-numImagesHand = numel(imageFilesHand);
-bboxesHand = cell(numImagesHand, 1);
-scoresHand = cell(numImagesHand, 1);
-for i = 1:numImagesHand
-    [bboxesHand{i}, scoresHand{i}] = detect(handDetector, imread(imageFilesHand{i}));
+function processDetection(trainingData, detector, outputFile, splitRatio)
+    numImages = height(trainingData);
+    splitIdx = randperm(numImages, round(splitRatio * numImages));
+
+    validationDataSplit = trainingData(setdiff(1:end, splitIdx), :);
+
+    imageFiles = validationDataSplit.imageFilename;
+    numImages = numel(imageFiles);
+    
+    filenames = cell(numImages, 1);
+    bboxes = cell(numImages, 1);
+    scores = cell(numImages, 1);
+
+    for i = 1:numImages
+        img = imread(imageFiles{i});
+        [bboxes{i}, scores{i}] = detect(detector, img);
+        
+        filenames{i} = imageFiles{i};
+        bboxes{i} = mat2str(bboxes{i});
+        scores{i} = mat2str(scores{i});
+    end
+    
+    T = table(filenames, bboxes, scores, ...
+        'VariableNames', {'Filename', 'BoundingBox', 'ConfidenceScore'});
+    
+    writetable(T, outputFile);
+    disp(['Excel file created and stored with results for ', outputFile]);
 end
-handDetectionResults.imageFilename = imageFilesHand;
-handDetectionResults.Hand = bboxesHand;
-handDetectionResults.HandScore = scoresHand;
 
-numImages = numel(handDetectionResults.imageFilename);
-
-disp('data gathering complete!');
-
-% Convert bounding boxes and scores to strings for Excel export
-bboxStr = cell(numImages, 1);
-scoreStr = cell(numImages, 1);
-
-for i = 1:numImages
-    bboxStr{i} = mat2str(handDetectionResults.Hand{i});
-    scoreStr{i} = mat2str(handDetectionResults.HandScore{i});
-end
-
-% Convert to table
-T = table(handDetectionResults.imageFilename, bboxStr, scoreStr, ...
-    'VariableNames', {'Filename', 'BoundingBox', 'ConfidenceScore'});
-
-writetable(T, 'handDetectionResults_S103.xlsx');
-
-disp('Excel file created and stored with faceDetector results.');
 
 
