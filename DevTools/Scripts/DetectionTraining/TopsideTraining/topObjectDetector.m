@@ -22,7 +22,7 @@ if ~exist(saveDir, 'dir')
     mkdir(saveDir);
 end
 
-savePath = fullfile(saveDir, 'trainedTopSideHandDetector_T03.mat');
+savePath = fullfile(saveDir, 'trainedTopHandDetector_T01.mat');
 save(savePath, 'handDetector');
 
 

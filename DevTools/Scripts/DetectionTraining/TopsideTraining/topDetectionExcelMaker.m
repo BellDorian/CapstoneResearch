@@ -36,7 +36,7 @@ T = table(topsideDetectionResults.imageFilename, bboxStr, scoreStr, ...
     'VariableNames', {'Filename', 'BoundingBox', 'ConfidenceScore'});
 
 % Save to Excel
-excelPath = 'topsideHandDetectionResults.xlsx';
+excelPath = 'topDetectResults_T01.xlsx';
 writetable(T, excelPath);
 
 disp(['Excel file created and stored at ' excelPath '.']);

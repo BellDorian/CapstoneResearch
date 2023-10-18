@@ -3,7 +3,7 @@
 
 %specify where the video is located and where to store the frames
 videoFile = 'D:\myCode\CAPSTONE\A2_Videos\Topside\topside_3.mp4';
-outputDir = 'D:\myCode\CAPSTONE\A2_Videos\Topside\frames\T105\';
+outputDir = 'D:\myCode\CAPSTONE\A2_Videos\Topside\frames\T101\';
 
 if ~exist(outputDir, 'dir')
     mkdir(outputDir);
@@ -16,7 +16,7 @@ while hasFrame(vidObj)
     frameNum = frameNum + 1;
     frame = readFrame(vidObj);
     
-    outputFileName = sprintf('%sT105frame_%04d.jpg', outputDir, frameNum);
+    outputFileName = sprintf('%sT101frame_%04d.jpg', outputDir, frameNum);
     imwrite(frame, outputFileName);
 end
 
