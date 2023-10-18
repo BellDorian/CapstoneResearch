@@ -2,11 +2,11 @@ splitRatio = 0.8;
 
 % --- Face Detection & Evaluation ---
 disp('Gathering Face, Eyes, Mouth detection data');
-processDetection(faceEyesMouthTrainingData, faceEyesMouthDetector, 'faceDetectionResults_S203.xlsx', splitRatio);
+processDetection(faceEyesMouthTrainingData, faceEyesMouthDetector, 'faceDetectionResults_S104.xlsx', splitRatio);
 
 % --- Hand Detection & Evaluation ---
 disp('Gathering Hand detection data');
-processDetection(handTrainingData, handDetector, 'handDetectionResults_S203.xlsx', splitRatio);
+processDetection(handTrainingData, handDetector, 'handDetectionResults_S104.xlsx', splitRatio);
 
 function processDetection(trainingData, detector, outputFile, splitRatio)
     numImages = height(trainingData);

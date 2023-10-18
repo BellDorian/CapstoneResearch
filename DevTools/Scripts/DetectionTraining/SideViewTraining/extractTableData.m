@@ -1,11 +1,11 @@
-load('Side2_03.mat', 'gTruth');
+load('Side1_04.mat', 'gTruth');
 
-labelData = gTruth.ROILabelData.side2_3;
+labelData = gTruth.ROILabelData.side1_4;
 
 imageFileNames = cell(height(labelData), 1);
 
 for i = 1:height(labelData)
-    imageFileNames{i} = sprintf('%sS203frame_%04d.jpg', outputDir, i);
+    imageFileNames{i} = sprintf('%sS104frame_%04d.jpg', outputDir, i);
 end
 
 % Initialize empty cell arrays for storing bounding boxes
@@ -18,7 +18,7 @@ MouthBB = cell(height(labelData), 1);
 for i = 1:height(labelData)
     HandsBB{i} = labelData.Hands{i};
     EyesBB{i} = labelData.Eyes{i};
-    FaceBB{i} = labelData.Face{i};
+    FaceBB{i} = labelData.Head{i};
     MouthBB{i} = labelData.Mouth{i};
 end
 
