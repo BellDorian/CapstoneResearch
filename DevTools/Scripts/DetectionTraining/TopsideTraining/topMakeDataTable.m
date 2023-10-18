@@ -1,8 +1,8 @@
 % ========== Creating Training Data Table ==========
 
-load('Topside_05.mat', 'gTruth');
+load('Topside_03.mat', 'gTruth');
 
-labelData = gTruth.ROILabelData.topside_5;
+labelData = gTruth.ROILabelData.topside_3;
 
 imageFileNames = cell(height(labelData), 1);
 
@@ -14,7 +14,7 @@ end
 % we need to retrieve them for each image and store them in the training data.
 handBboxes = cell(height(labelData), 1);
 for i = 1:height(labelData)
-    handBboxes{i} = double(labelData.Hand{i});
+    handBboxes{i} = double(labelData.Hands{i});
 end
 
 topsideTrainingData = table(imageFileNames, handBboxes, ...
