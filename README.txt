@@ -1,4 +1,4 @@
-# CSCI495_Fall2023
+# Capstone
 
 SISTER REPOSITORY LINK
 ------------------------
