@@ -1,6 +1,8 @@
-RESOURCE REPOSITORY LINK: https://github.iu.edu/dolebell/Capstone 
-
 # CSCI495_Fall2023
+
+SISTER REPOSITORY LINK
+------------------------
+Resources: https://github.iu.edu/dolebell/Capstone_Resources
 
 
 Notes from meeting (9/14/23, 7pm - 8pm):
