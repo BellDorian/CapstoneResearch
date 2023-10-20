@@ -1,3 +1,5 @@
+RESOURCE REPOSITORY LINK: https://github.iu.edu/dolebell/Capstone 
+
 # CSCI495_Fall2023
 
 
